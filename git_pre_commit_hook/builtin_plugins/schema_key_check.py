@@ -18,7 +18,7 @@ def check(file_staged_for_commit, options):
         path, ext = os.path.splitext(file_staged_for_commit.path)
         idx = path.find("/project/")
         if idx == -1:
-            return False
+            return True
         path = path[idx + len("/project/"):]
         path = path.replace("/", ".")
         assert path == title
