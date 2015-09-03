@@ -13,14 +13,14 @@ def check(file_staged_for_commit, options):
     if not fnmatch.fnmatch(basename, options.json_files):
         return True
     try:
-        content = json.loads(file_staged_for_commit.contents)
-        title = content['title']
         path, ext = os.path.splitext(file_staged_for_commit.path)
         idx = path.find("/project/")
         if idx == -1:
             return True
         path = path[idx + len("/project/"):]
         path = path.replace("/", ".")
+        content = json.loads(file_staged_for_commit.contents)
+        title = content['title']
         assert path == title
     except:
         return False
